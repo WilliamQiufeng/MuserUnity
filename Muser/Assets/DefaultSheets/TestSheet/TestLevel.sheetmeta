@@ -1,0 +1,13 @@
+{
+	"MidiFile": "C:\\Users\\willi\\source\\repos\\Muser\\Muser\\Assets\\DefaultSheets\\TestSheet\\TestMidi.mid",
+	"OutputSheet": "TestOut.sheet",
+	"SheetMeta": {
+		"Author": "Qiufeng54321",
+		"Name": "Test",
+		"MusicPath": "TestMusic.mp3",
+		"MusicAuthor": "IDK",
+		"StartOffset": 0,
+		"HardnessName": "TestName",
+		"HardnessLevel": 123
+	}
+}

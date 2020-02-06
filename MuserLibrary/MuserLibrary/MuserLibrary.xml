@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Muser</name>
+    </assembly>
+    <members>
+        <member name="T:Muser.Sheet.Effect.Effect">
+            <summary>
+            Base effect type
+            </summary>
+        </member>
+        <member name="T:Muser.Sheet.Note.Note">
+            <summary>
+            Base note type
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Note.Note.Time">
+            <summary>
+            The time when the note gets enabled, relative to the current progress of the music
+            </summary>
+        </member>
+        <member name="T:Muser.Sheet.Note.NormalNote">
+            <summary>
+            Normal note type
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Note.NormalNote.PreactionTime">
+            <summary>
+            The time it takes from enter to center
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Note.NormalNote.Length">
+            <summary>
+            The length of the note
+            </summary>
+        </member>
+        <member name="M:Muser.Sheet.Note.NormalNote.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Constructs NormalNote
+            </summary>
+            <param name="time"></param>
+            <param name="preactionTime"></param>
+            <param name="length"></param>
+        </member>
+        <member name="T:Muser.Sheet.Note.EffectNote">
+            <summary>
+            Effect note
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Note.EffectNote.Effect">
+            <summary>
+            The effect to use
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Note.EffectNote.Length">
+            <summary>
+            The length of the note
+            </summary>
+        </member>
+        <member name="M:Muser.Sheet.Note.EffectNote.#ctor(System.Double,Muser.Sheet.Effect.Effect,System.Double)">
+            <summary>
+            Constructs EffectNote
+            </summary>
+            <param name="time"></param>
+            <param name="effect"></param>
+            <param name="length"></param>
+        </member>
+        <member name="T:Muser.Sheet.Sheet">
+            <summary>
+            The sheet
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Sheet.Meta">
+            <summary>
+            Meta of the sheet
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Sheet.Notes">
+            <summary>
+            Notes of the sheet
+            </summary>
+        </member>
+        <member name="M:Muser.Sheet.Sheet.#ctor(Muser.Sheet.Meta.SheetMeta,Muser.Sheet.Note.Note[])">
+            <summary>
+            Constructs the sheet
+            </summary>
+            <param name="meta"></param>
+            <param name="notes"></param>
+        </member>
+        <member name="T:Muser.Sheet.Meta.SheetMeta">
+            <summary>
+            Represents the meta of the sheet
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Meta.SheetMeta.Author">
+            <summary>
+            Author of the sheet
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Meta.SheetMeta.Name">
+            <summary>
+            The name of the sheet
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Meta.SheetMeta.MusicPath">
+            <summary>
+            Where the music is
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Meta.SheetMeta.MusicAuthor">
+            <summary>
+            The author of the music
+            </summary>
+        </member>
+        <member name="P:Muser.Sheet.Meta.SheetMeta.StartOffset">
+            <summary>
+            Decides when to start the music
+            </summary>
+        </member>
+        <member name="M:Muser.Sheet.Meta.SheetMeta.#ctor(System.String,System.String,System.String,System.String,System.Double)">
+            <summary>
+            Constructor of SheetMeta
+            </summary>
+            <param name="author"></param>
+            <param name="name"></param>
+            <param name="musicPath"></param>
+            <param name="musicAuthor"></param>
+            <param name="startOffset"></param>
+        </member>
+    </members>
+</doc>

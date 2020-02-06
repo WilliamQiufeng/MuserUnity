@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MuserSheetGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\\\Users\\\\willi\\\\source\\\\repos\\\\Muser\\\\Muser\\\\Assets\\\\DefaultSheets\\\\TestSheet\\\\TestMidi.mid"
+    }
+  }
+}
