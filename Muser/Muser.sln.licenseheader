@@ -1,5 +1,7 @@
-﻿//   Assembly-CSharp
-//   Copyright (C) 2020  Ye William
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+//   %Project%
+//   Copyright (C) %CurrentYear%  %UserDisplayName%
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -14,15 +16,13 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Muser.Runtime {
-    class Consts {
-        public static char separator = System.IO.Path.DirectorySeparatorChar;
-        public static string[] sheetGroups = new string[] { };
-    }
-}
+extensions: .aspx .ascx
+<%-- 
+Copyright (c) %CurrentYear% %UserDisplayName%
+--%>
+extensions: .vb
+'Copyright to GPLv3
+extensions:  .xml .config .xsd
+<!--
+Copyright to GPLv3
+-->
