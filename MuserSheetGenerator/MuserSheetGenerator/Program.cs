@@ -15,27 +15,32 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 using System;
+using System.Globalization;
+using System.Threading;
 using Newtonsoft.Json;
 
 namespace Muser.Sheets.Generator {
     class Program {
         static void Main(string[] args) {
-            Console.WriteLine("Hello World!");
+            Properties.Resources.Culture = CultureInfo.GetCultureInfo("ja-JP");
+            Console.WriteLine(Properties.Resources.HelloWorld);
+            
             Sheet sheet = new Sheet(
                 new Sheets.Meta.SheetMeta("Qiufeng54321", "Test", "lol", "muau", 1000),
-                new Note.Note[]{
-                    new Note.NormalNote(100, 10, 301)
+                new Notes.Note[]{
+                    new Notes.NormalNote(100, 10, 301)
                 });
             Console.WriteLine(JsonConvert.SerializeObject(sheet));
-            string[] metasheets = Sheets.Finder.find(new string[] { "C:\\Users\\willi\\source\\repos\\Muser\\Muser\\Assets\\DefaultSheets" }, "*.sheetmeta", System.IO.SearchOption.AllDirectories);
+            string[] metasheets = Sheets.Finder.Find(new string[] { "C:\\Users\\willi\\source\\repos\\Muser\\Muser\\Assets\\DefaultSheets" }, "*.sheetmeta", System.IO.SearchOption.AllDirectories);
             foreach(string path in metasheets) {
                 MetaReader reader = new MetaReader(path);
-                reader.read();
-                reader.parse();
+                reader.Read();
+                reader.Parse();
                 Console.WriteLine(path);
                 Console.WriteLine(JsonConvert.SerializeObject(reader.Meta));
-                MidiConvert.convert(reader.Meta.MidiFile, new int[] { 2 });
+                MidiConvert.Convert(reader.Meta.MidiFile, new int[] { 2 });
             }
+
         }
     }
 }

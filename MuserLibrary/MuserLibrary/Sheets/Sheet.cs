@@ -28,18 +28,31 @@ namespace Muser.Sheets {
         /// Meta of the sheet
         /// </summary>
         public Meta.SheetMeta Meta { get; set; }
+
+        private Notes.Note[] notes;
+
         /// <summary>
         /// Notes of the sheet
         /// </summary>
-        public Note.Note[] Notes { get; set; }
+        public Notes.Note[] GetNotes() {
+            return notes;
+        }
+
+        /// <summary>
+        /// Notes of the sheet
+        /// </summary>
+        public void SetNotes(Notes.Note[] value) {
+            notes = value;
+        }
+
         /// <summary>
         /// Constructs the sheet
         /// </summary>
         /// <param name="meta"></param>
         /// <param name="notes"></param>
-        public Sheet(SheetMeta meta, Note.Note[] notes) {
+        public Sheet(SheetMeta meta, Notes.Note[] notes) {
             Meta = meta;
-            Notes = notes;
+            SetNotes(notes);
         }
     }
 }

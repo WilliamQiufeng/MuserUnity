@@ -16,20 +16,13 @@
 //
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using System.Text;
 
-namespace Muser.Sheets {
-    /// <summary>
-    /// Finds sheets with given extension
-    /// </summary>
-    public static class Finder {
-        public static string[] Find(string[] paths, string extension, SearchOption option = SearchOption.TopDirectoryOnly) {
-            var res = new List<string>();
-            paths = paths ?? throw new ArgumentNullException(nameof(paths));
-            foreach(string path in paths) {
-                res.AddRange(Directory.GetFiles(path, extension, option));
-            }
-            return res.ToArray();
+namespace Muser.Util {
+    public static class MapUtils {
+        public static string ToDebugString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary) {
+            return "{" + string.Join(",", dictionary.Select(kv => $"{kv.Key}={kv.Value}").ToArray()) + "}";
         }
     }
 }

@@ -16,20 +16,19 @@
 //
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Text;
 
-namespace Muser.Sheets {
+namespace Muser.Sheets.Notes {
     /// <summary>
-    /// Finds sheets with given extension
+    /// The note side indexes
     /// </summary>
-    public static class Finder {
-        public static string[] Find(string[] paths, string extension, SearchOption option = SearchOption.TopDirectoryOnly) {
-            var res = new List<string>();
-            paths = paths ?? throw new ArgumentNullException(nameof(paths));
-            foreach(string path in paths) {
-                res.AddRange(Directory.GetFiles(path, extension, option));
-            }
-            return res.ToArray();
-        }
+    public enum NoteSide : int {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        LEFT = 0,
+        RIGHT = 1,
+        UP = 2,
+        DOWN = 3,
+        UNKNOWN = 4
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

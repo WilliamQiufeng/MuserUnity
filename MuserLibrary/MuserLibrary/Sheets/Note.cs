@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace Muser.Sheets.Note {
+namespace Muser.Sheets.Notes {
     /// <summary>
     /// Base note type
     /// </summary>
@@ -49,14 +49,20 @@ namespace Muser.Sheets.Note {
         /// </summary>
         public double Length { get; set; }
         /// <summary>
+        /// The index of the center the note will go to
+        /// </summary>
+        public int CenterIndex { get; set; }
+        /// <summary>
         /// Constructs NormalNote
         /// </summary>
         /// <param name="time"></param>
         /// <param name="preactionTime"></param>
         /// <param name="length"></param>
-        public NormalNote(double time, double preactionTime, double length) : base(time) {
+        /// <param name="centerIndex"></param>
+        public NormalNote(double time, double preactionTime, double length, int centerIndex = 0) : base(time) {
             PreactionTime = preactionTime;
             Length = length;
+            CenterIndex = centerIndex;
         }
     }
     /// <summary>
@@ -66,7 +72,7 @@ namespace Muser.Sheets.Note {
         /// <summary>
         /// The effect to use
         /// </summary>
-        public Effect.Effect Effect { get; set; }
+        public Effects.Effect Effect { get; set; }
         /// <summary>
         /// The length of the note
         /// </summary>
@@ -77,7 +83,7 @@ namespace Muser.Sheets.Note {
         /// <param name="time"></param>
         /// <param name="effect"></param>
         /// <param name="length"></param>
-        public EffectNote(double time, Effect.Effect effect, double length) : base(time) {
+        public EffectNote(double time, Effects.Effect effect, double length) : base(time) {
             Effect = effect;
             Length = length;
         }

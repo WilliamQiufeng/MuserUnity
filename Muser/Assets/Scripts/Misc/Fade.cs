@@ -29,8 +29,9 @@ public class Fade : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         // Modified from https://gamedev.stackexchange.com/a/102432
-        Created = new GameObject(); //Create the GameObject
-        Created.name = "FadeInBlur";
+        Created = new GameObject {
+            name = "FadeInBlur"
+        }; //Create the GameObject
         img = Created.AddComponent<Image>(); //Add the Image Component script
         img.sprite = sprite; //Set the Sprite of the Image Component on the new GameObject
         img.raycastTarget = false;

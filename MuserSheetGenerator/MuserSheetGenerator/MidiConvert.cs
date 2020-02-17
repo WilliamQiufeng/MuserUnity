@@ -24,33 +24,33 @@ using Melanchall.DryWetMidi.Interaction;
 
 namespace Muser.Sheets.Generator {
     class MidiConvert {
-        public static void convert(string path, int[] trackIndexes) {
-            /*
-            var access = MidiAccessManager.Default;
-            var music = MidiMusic.Read(System.IO.File.OpenRead(path));
-            foreach (var track in music.Tracks) {
-                Console.WriteLine("------------------------------");
-                foreach (var note in track.Messages) {
-                    Console.WriteLine($"{note.Event.EventType}: {note.DeltaTime}ticks, {note.Event.Value}");
-                }
-            }
-            */
+        public static Notes.Note[] Convert(string path, int[] trackIndexes) {
             var midiFile = MidiFile.Read(path);
             var tempoMap = midiFile.GetTempoMap();
             var tracks = midiFile.Chunks.OfType<TrackChunk>().ToList();
+            var notes = new List<Notes.Note>();
             foreach (var trackIndex in trackIndexes) {
                 var track = tracks[trackIndex];
-                Console.WriteLine($"Track {track.ChunkId}---------------");
+                Console.WriteLine($"Track {trackIndex}---------------");
                 var manager = track.GetNotes();
-                //TimedEventsCollection events = manager.Events;
-
                 foreach (var e in manager) {
-                    long time = e.TimeAs<MetricTimeSpan>(tempoMap).TotalMicroseconds;
-                    long length = e.LengthAs<MetricTimeSpan>(tempoMap).TotalMicroseconds;
-                    int pitch = e.NoteNumber;
-                    Console.WriteLine($"Note {pitch} at {time / 1000.0}ms lasts {length / 1000.0}ms");
+                    ProcessNote(e, ref notes, ref tempoMap);
                 }
             }
+            return notes.ToArray();
+        }
+
+        internal static void ProcessNote(Melanchall.DryWetMidi.Interaction.Note e, ref List<Notes.Note> notes, ref TempoMap tempoMap) {
+            double time = e.TimeAs<MetricTimeSpan>(tempoMap).TotalMicroseconds / 1000d;
+            double length = e.LengthAs<MetricTimeSpan>(tempoMap).TotalMicroseconds / 1000d;
+            int pitch = e.NoteNumber;
+            Console.WriteLine($"Note {pitch} at {time}ms lasts {length}ms");
+            bool success = NoteNumber.NumberSidePairs.TryGetValue(pitch, out Notes.NoteSide noteSide);
+            noteSide = success ? noteSide : Notes.NoteSide.UNKNOWN;
+            int centerIndex = NoteNumber.GetTrack(pitch);
+            Console.WriteLine($"Corresponding Side: {noteSide}, Center: {centerIndex}");
+            Notes.Note note = new Notes.NormalNote(time, 2000, length, centerIndex);
+            notes.Add(note);
         }
     }
 }

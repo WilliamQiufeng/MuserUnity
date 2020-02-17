@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Muser.Sheets.Effect {
+namespace Muser.Sheets.Effects {
     /// <summary>
     /// Base effect type
     /// </summary>

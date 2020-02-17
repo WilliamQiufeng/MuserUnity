@@ -32,5 +32,6 @@ namespace Muser.Sheets.Generator {
         /// Path to the output sheet
         /// </summary>
         public string OutputSheet { get; set; }
+        public int[] TrackIndexes { get; set; }
     }
 }

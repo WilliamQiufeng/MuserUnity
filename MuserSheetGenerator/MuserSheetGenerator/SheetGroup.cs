@@ -17,12 +17,31 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Muser.Sheets.Generator {
     class SheetGroup {
-        string path;
-        public void process() {
-            System.IO.Directory.GetFiles(path, "*.sheetmeta");
+        readonly string path;
+
+        public SheetGroup(string path) {
+            this.path = path ?? throw new ArgumentNullException(nameof(path));
+        }
+
+        public void Process() {
+            var sheets = Directory.GetFiles(path, "*.sheetmeta");
+            foreach(var sheet in sheets) {
+                var reader = new MetaReader(sheet);
+                reader.Read();
+                reader.Parse();
+                var sheetStr = JsonConvert.SerializeObject(reader.OutputSheet);
+                var sheetBytes = Encoding.Default.GetBytes(sheetStr);
+                var fileOut = new FileStream(reader.Meta.OutputSheet, FileMode.OpenOrCreate, FileAccess.Write);
+                
+                fileOut.Write(sheetBytes, 0, sheetBytes.Length);
+                fileOut.Close();
+                fileOut.Dispose();
+            }
         }
     }
 }
