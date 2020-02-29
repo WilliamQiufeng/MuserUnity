@@ -19,12 +19,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Muser.Runtime;
+using Newtonsoft.Json;
 
+// TODO: Be able to load sheets
+// TODO: Respond to arrow keys
 public class LRSelection : MonoBehaviour {
     public Animator Animator;
     public Image Icon;
-    public Text Name, SheetAuthor, MusicAuthor;
+    public Text Name, SheetAuthor, MusicAuthor, LevelHardness;
     private int selection = 0;
+    private int hardnessSelection = 0;
     // Start is called before the first frame update
     void Start() {
 

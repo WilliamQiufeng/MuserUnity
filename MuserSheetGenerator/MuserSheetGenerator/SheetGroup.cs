@@ -29,14 +29,14 @@ namespace Muser.Sheets.Generator {
         }
 
         public void Process() {
-            var sheets = Directory.GetFiles(path, "*.sheetmeta");
+            var sheets = Directory.GetFiles(path, FileExtension.SheetMeta);
             foreach(var sheet in sheets) {
                 var reader = new MetaReader(sheet);
                 reader.Read();
                 reader.Parse();
-                var sheetStr = JsonConvert.SerializeObject(reader.OutputSheet);
+                var sheetStr = JsonConvert.SerializeObject(reader.OutputSheet, Formatting.Indented);
                 var sheetBytes = Encoding.Default.GetBytes(sheetStr);
-                var fileOut = new FileStream(reader.Meta.OutputSheet, FileMode.OpenOrCreate, FileAccess.Write);
+                var fileOut = new FileStream(Path.Combine(path, reader.Meta.OutputSheet), FileMode.OpenOrCreate, FileAccess.Write);
                 
                 fileOut.Write(sheetBytes, 0, sheetBytes.Length);
                 fileOut.Close();

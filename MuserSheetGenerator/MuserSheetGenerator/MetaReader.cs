@@ -22,6 +22,7 @@ using Newtonsoft.Json;
 
 namespace Muser.Sheets.Generator {
     class MetaReader {
+        private readonly string path;
         private readonly FileStream stream;
         private string metaRead;
         /// <summary>
@@ -34,6 +35,7 @@ namespace Muser.Sheets.Generator {
         /// </summary>
         /// <param name="path"></param>
         public MetaReader(string path) {
+            this.path = path;
             stream = new FileStream(path, FileMode.Open, FileAccess.Read);
         }
 
@@ -55,7 +57,8 @@ namespace Muser.Sheets.Generator {
         /// </summary>
         public void Parse() {
             Meta = JsonConvert.DeserializeObject<Meta>(metaRead);
-            var notes = MidiConvert.Convert(Meta.MidiFile, Meta.TrackIndexes);
+            string cwd = Path.GetDirectoryName(path);
+            var notes = MidiConvert.Convert(Meta.MidiFile, Meta.TrackIndexes, cwd);
             OutputSheet = new Sheet(Meta.SheetMeta, notes);
         }
 

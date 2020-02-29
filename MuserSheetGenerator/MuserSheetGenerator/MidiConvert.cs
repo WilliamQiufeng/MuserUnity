@@ -17,15 +17,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.IO;
 //using Commons.Music.Midi;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
 
 namespace Muser.Sheets.Generator {
     class MidiConvert {
-        public static Notes.Note[] Convert(string path, int[] trackIndexes) {
-            var midiFile = MidiFile.Read(path);
+        public static Notes.Note[] Convert(string path, int[] trackIndexes, string cwd) {
+            var midiFullPath = Path.Combine(cwd, path);
+            Console.WriteLine(Properties.GeneratorResources.Debug_MidiFullPath, midiFullPath);
+            var midiFile = MidiFile.Read(midiFullPath);
             var tempoMap = midiFile.GetTempoMap();
             var tracks = midiFile.Chunks.OfType<TrackChunk>().ToList();
             var notes = new List<Notes.Note>();
@@ -40,7 +42,7 @@ namespace Muser.Sheets.Generator {
             return notes.ToArray();
         }
 
-        internal static void ProcessNote(Melanchall.DryWetMidi.Interaction.Note e, ref List<Notes.Note> notes, ref TempoMap tempoMap) {
+        internal static void ProcessNote(Note e, ref List<Notes.Note> notes, ref TempoMap tempoMap) {
             double time = e.TimeAs<MetricTimeSpan>(tempoMap).TotalMicroseconds / 1000d;
             double length = e.LengthAs<MetricTimeSpan>(tempoMap).TotalMicroseconds / 1000d;
             int pitch = e.NoteNumber;
@@ -49,7 +51,7 @@ namespace Muser.Sheets.Generator {
             noteSide = success ? noteSide : Notes.NoteSide.UNKNOWN;
             int centerIndex = NoteNumber.GetTrack(pitch);
             Console.WriteLine($"Corresponding Side: {noteSide}, Center: {centerIndex}");
-            Notes.Note note = new Notes.NormalNote(time, 2000, length, centerIndex);
+            Notes.Note note = new Notes.NormalNote(time, 2000, length, centerIndex, noteSide);
             notes.Add(note);
         }
     }

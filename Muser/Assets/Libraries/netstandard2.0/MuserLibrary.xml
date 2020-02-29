@@ -30,6 +30,16 @@
             Base effect type
             </summary>
         </member>
+        <member name="T:Muser.Sheets.FileExtension">
+            <summary>
+            Lists extensions of files used in muser
+            </summary>
+        </member>
+        <member name="F:Muser.Sheets.FileExtension.SheetMeta">
+            <summary>
+            Extension of sheetmeta files
+            </summary>
+        </member>
         <member name="T:Muser.Sheets.Finder">
             <summary>
             Finds sheets with given extension
@@ -56,9 +66,9 @@
             Normal note type
             </summary>
         </member>
-        <member name="P:Muser.Sheets.Notes.NormalNote.PreactionTime">
+        <member name="P:Muser.Sheets.Notes.NormalNote.AppearLength">
             <summary>
-            The time it takes from enter to center
+            How much time at total will the note exist from enter to fade
             </summary>
         </member>
         <member name="P:Muser.Sheets.Notes.NormalNote.Length">
@@ -71,12 +81,17 @@
             The index of the center the note will go to
             </summary>
         </member>
-        <member name="M:Muser.Sheets.Notes.NormalNote.#ctor(System.Double,System.Double,System.Double,System.Int32)">
+        <member name="P:Muser.Sheets.Notes.NormalNote.Side">
+            <summary>
+            The side of the note
+            </summary>
+        </member>
+        <member name="M:Muser.Sheets.Notes.NormalNote.#ctor(System.Double,System.Double,System.Double,System.Int32,Muser.Sheets.Notes.NoteSide)">
             <summary>
             Constructs NormalNote
             </summary>
             <param name="time"></param>
-            <param name="preactionTime"></param>
+            <param name="appearLength"></param>
             <param name="length"></param>
             <param name="centerIndex"></param>
         </member>
@@ -118,7 +133,12 @@
             Meta of the sheet
             </summary>
         </member>
-        <member name="P:Muser.Sheets.Sheet.Notes">
+        <member name="M:Muser.Sheets.Sheet.GetNotes">
+            <summary>
+            Notes of the sheet
+            </summary>
+        </member>
+        <member name="M:Muser.Sheets.Sheet.SetNotes(Muser.Sheets.Notes.Note[])">
             <summary>
             Notes of the sheet
             </summary>

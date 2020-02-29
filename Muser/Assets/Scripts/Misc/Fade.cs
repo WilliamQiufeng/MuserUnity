@@ -44,14 +44,16 @@ public class Fade : MonoBehaviour {
         transform.offsetMax = new Vector2(Screen.width - 1, Screen.height - 1);
         transform.SetParent(parent.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
         Created.SetActive(true); //Activate the GameObject
-        StartCoroutine("fade");
+        StartCoroutine("StartFade");
     }
 
     // Update is called once per frame
     void Update() {
 
     }
-    IEnumerator fade() {
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+    IEnumerator StartFade() {
         bool increase = final > initial;
         for (float i = initial; increase ? i < final : i > final; i += step) {
             img.color = new Color(1, 1, 1, i);

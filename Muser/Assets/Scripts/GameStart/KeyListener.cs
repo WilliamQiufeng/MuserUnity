@@ -14,23 +14,21 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class MuserTitle : MonoBehaviour {
-    // Start is called before the first frame update
+public class KeyListener : MonoBehaviour {
+
+    // Use this for initialization
     void Start() {
+
     }
 
     // Update is called once per frame
     void Update() {
-
-    }
-
-    void OnAnimationEnd() {
-        Debug.Log("OnAnimationEnd");
-        SceneManager.LoadScene("GameStartScene");
+        if(Input.GetKey(KeyCode.Return)) {
+            SceneManager.LoadScene("SelectionScene");
+        }
     }
 }

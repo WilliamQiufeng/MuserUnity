@@ -9,5 +9,6 @@
 		"StartOffset": 0,
 		"HardnessName": "TestName",
 		"HardnessLevel": 123
-	}
+	},
+	"TrackIndexes": [2]
 }

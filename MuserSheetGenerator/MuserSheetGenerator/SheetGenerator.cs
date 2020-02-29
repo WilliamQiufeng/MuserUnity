@@ -1,4 +1,4 @@
-﻿//   Assembly-CSharp
+﻿//   MuserSheetGenerator
 //   Copyright (C) 2020  Ye William
 //
 //    This program is free software: you can redistribute it and/or modify
@@ -14,23 +14,13 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Text;
 
-public class MuserTitle : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start() {
-    }
+namespace Muser.Sheets.Generator {
+    class SheetGenerator {
+        readonly string path;
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    void OnAnimationEnd() {
-        Debug.Log("OnAnimationEnd");
-        SceneManager.LoadScene("GameStartScene");
     }
 }

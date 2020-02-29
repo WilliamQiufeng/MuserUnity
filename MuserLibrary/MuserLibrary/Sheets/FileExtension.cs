@@ -14,45 +14,18 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-using Muser.Sheets.Meta;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Muser.Sheets {
     /// <summary>
-    /// The sheet
+    /// Lists extensions of files used in muser
     /// </summary>
-    public class Sheet {
+    public static class FileExtension {
         /// <summary>
-        /// Meta of the sheet
+        /// Extension of sheetmeta files
         /// </summary>
-        public Meta.SheetMeta Meta { get; set; }
-
-        public Notes.Note[] Notes;
-
-        /// <summary>
-        /// Notes of the sheet
-        /// </summary>
-        public Notes.Note[] GetNotes() {
-            return Notes;
-        }
-
-        /// <summary>
-        /// Notes of the sheet
-        /// </summary>
-        public void SetNotes(Notes.Note[] value) {
-            Notes = value;
-        }
-
-        /// <summary>
-        /// Constructs the sheet
-        /// </summary>
-        /// <param name="meta"></param>
-        /// <param name="notes"></param>
-        public Sheet(SheetMeta meta, Notes.Note[] notes) {
-            Meta = meta;
-            SetNotes(notes);
-        }
+        public static readonly string SheetMeta = "*.sheetmeta.json";
     }
 }

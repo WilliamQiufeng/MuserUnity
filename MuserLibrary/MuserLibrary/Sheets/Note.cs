@@ -41,9 +41,9 @@ namespace Muser.Sheets.Notes {
     /// </summary>
     public class NormalNote : Note {
         /// <summary>
-        /// The time it takes from enter to center
+        /// How much time at total will the note exist from enter to fade
         /// </summary>
-        public double PreactionTime { get; set; }
+        public double AppearLength { get; set; }
         /// <summary>
         /// The length of the note
         /// </summary>
@@ -53,16 +53,21 @@ namespace Muser.Sheets.Notes {
         /// </summary>
         public int CenterIndex { get; set; }
         /// <summary>
+        /// The side of the note
+        /// </summary>
+        public NoteSide Side { get; set; }
+        /// <summary>
         /// Constructs NormalNote
         /// </summary>
         /// <param name="time"></param>
-        /// <param name="preactionTime"></param>
+        /// <param name="appearLength"></param>
         /// <param name="length"></param>
         /// <param name="centerIndex"></param>
-        public NormalNote(double time, double preactionTime, double length, int centerIndex = 0) : base(time) {
-            PreactionTime = preactionTime;
+        public NormalNote(double time, double appearLength, double length, int centerIndex, NoteSide side) : base(time) {
+            AppearLength = appearLength;
             Length = length;
             CenterIndex = centerIndex;
+            Side = side;
         }
     }
     /// <summary>
